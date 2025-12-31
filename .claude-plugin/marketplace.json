@@ -1,0 +1,31 @@
+  {
+    "name": "mulerouter-skills",
+    "owner": {
+      "name": "MuleRouter Team",
+      "email": "support@mulerouter.ai"
+    },
+    "metadata": {
+      "description": "MuleRouter / MuleRun multimodal API skills for AI-powered image and video generation",
+      "version": "1.0.0"
+    },
+    "plugins": [
+      {
+        "name": "mulerouter-skills",
+        "description": "Generates images and videos using MuleRouter / MuleRun multimodal APIs.",
+        "source": "./",
+        "version": "1.0.0",
+        "author": {
+          "name": "MuleRouter Team",
+          "email": "support@mulerouter.ai"
+        },
+        "homepage": "https://mulerouter.ai",
+        "license": "MIT",
+        "keywords": ["mulerouter", "image-generation", "video-generation"],
+        "category": "ai-generation",
+        "strict": false,
+        "skills": [
+          "./skills/mulerouter-skills"
+        ]
+      }
+    ]
+  }
