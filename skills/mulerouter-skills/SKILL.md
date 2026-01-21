@@ -82,8 +82,24 @@ uv run python models/alibaba/wan2.6-t2i/generation.py --prompt "A serene mountai
 
 **Image-to-Video:**
 ```bash
-uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --images '["https://example.com/photo.jpg"]'
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --images '["https://example.com/photo.jpg"]' #remote image url
 ```
+```bash
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image /path/to/local/image.png #local image path
+```
+
+## Image Input
+
+For image parameters (`--image`, `--images`, etc.), **prefer local file paths** over base64.
+
+```bash
+# Preferred: local file path (auto-converted to base64)
+--image /tmp/photo.png
+
+--images ["/tmp/photo.png"]
+```
+
+The skill automatically converts local file paths to base64 before sending to the API. This avoids command-line length limits that occur with raw base64 strings.
 
 ## Workflow
 
