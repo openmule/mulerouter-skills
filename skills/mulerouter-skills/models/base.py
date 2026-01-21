@@ -81,7 +81,7 @@ class BaseModelEndpoint(ABC):
         parser.add_argument(
             "--poll-interval",
             type=float,
-            default=5.0,
+            default=20.0,
             help="Polling interval in seconds (default: 5.0)",
         )
         parser.add_argument(

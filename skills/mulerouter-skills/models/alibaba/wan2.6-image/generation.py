@@ -57,7 +57,7 @@ ENDPOINT = ModelEndpoint(
             type="integer",
             description="Number of images to generate (1-4)",
             required=False,
-            default=4,
+            default=1,
         ),
         ModelParameter(
             name="seed",

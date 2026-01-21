@@ -1,6 +1,6 @@
 ---
 name: mulerouter
-description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6 or Nano Banana.
+description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6 or Nano Banana Pro.
 compatibility: Requires Python 3.10+, uv (or pip), and network access to api.mulerouter.ai or api.mulerun.com
 ---
 
@@ -25,7 +25,13 @@ ls -la .env 2>/dev/null || echo "No .env file found"
 
 ### Step 2: Configure if needed
 
-**Option A: Environment variables**
+**Default values (when not configured):**
+- `MULEROUTER_SITE` defaults to `"mulerun"`
+- `MULEROUTER_API_KEY` defaults to the value of `ANTHROPIC_API_KEY` environment variable
+
+If these defaults work for you, no additional configuration is needed.
+
+**Option A: Environment variables (to override defaults)**
 ```bash
 export MULEROUTER_SITE="mulerun"    # or "mulerouter"
 export MULEROUTER_API_KEY="your-api-key"
