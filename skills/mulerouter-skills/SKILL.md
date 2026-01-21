@@ -82,10 +82,10 @@ uv run python models/alibaba/wan2.6-t2i/generation.py --prompt "A serene mountai
 
 **Image-to-Video:**
 ```bash
-uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --images '["https://example.com/photo.jpg"]' #remote image url
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image "https://example.com/photo.jpg" #remote image url
 ```
 ```bash
-uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image /path/to/local/image.png #local image path
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image "/path/to/local/image.png" #local image path
 ```
 
 ## Image Input
