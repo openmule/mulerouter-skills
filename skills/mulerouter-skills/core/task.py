@@ -108,7 +108,7 @@ def poll_task(
     task_path: str,
     task_id: str,
     result_key: str = "images",
-    interval: float = 20.0,
+    interval: float = 5.0,
     max_wait: float = 600.0,
     verbose: bool = True,
 ) -> TaskResult:
@@ -165,7 +165,7 @@ def create_and_poll_task(
     endpoint_path: str,
     request_body: dict,
     result_key: str = "images",
-    interval: float = 20.0,
+    interval: float = 5.0,
     max_wait: float = 600.0,
     verbose: bool = True,
 ) -> TaskResult:
