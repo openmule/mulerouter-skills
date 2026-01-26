@@ -16,6 +16,7 @@ _model_files = [
     "nano-banana-pro/edit.py",
     "nano-banana/generation.py",
     "nano-banana/edit.py",
+    "veo3/generation.py",
 ]
 
 

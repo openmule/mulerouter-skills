@@ -14,6 +14,7 @@ IMAGE_PARAM_NAMES = {
     "first_frame_url",
     "last_frame_url",
     "ref_images_url",
+    "reference_images",
 }
 
 # Hint to add to image parameter descriptions

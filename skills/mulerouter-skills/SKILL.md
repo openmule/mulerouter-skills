@@ -25,12 +25,6 @@ ls -la .env 2>/dev/null || echo "No .env file found"
 
 ### Step 2: Configure if needed
 
-**Default values (when not configured):**
-- `MULEROUTER_SITE` defaults to `"mulerun"`
-- `MULEROUTER_API_KEY` defaults to the value of `ANTHROPIC_API_KEY` environment variable
-
-If these defaults work for you, no additional configuration is needed.
-
 **Option A: Environment variables (to override defaults)**
 ```bash
 export MULEROUTER_SITE="mulerun"    # or "mulerouter"
