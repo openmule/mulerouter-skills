@@ -36,6 +36,7 @@ python scripts/list_models.py --json
 | Wan2.5 T2V Preview | `models/alibaba/wan2.5-t2v-preview/generation.py` | Preview model |
 | Wan2.2 T2V Plus | `models/alibaba/wan2.2-t2v-plus/generation.py` | Previous generation |
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 video generation (mulerun only) |
+| Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 video generation (mulerun only) |
 
 ### Image-to-Video (I2V)
 
@@ -46,6 +47,7 @@ python scripts/list_models.py --json
 | Wan2.2 I2V Plus | `models/alibaba/wan2.2-i2v-plus/generation.py` | High quality |
 | Wan2.2 I2V Flash | `models/alibaba/wan2.2-i2v-flash/generation.py` | 50% faster |
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 with image input (mulerun only) |
+| Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 with image input (mulerun only) |
 
 ### Image-to-Image (I2I)
 

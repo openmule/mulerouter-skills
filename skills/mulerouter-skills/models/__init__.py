@@ -28,12 +28,13 @@ if str(_root_dir) not in sys.path:
     sys.path.insert(0, str(_root_dir))
 
 # Import provider packages to register all endpoints
-from models import alibaba, google
+from models import alibaba, google, openai
 from models.base import BaseModelEndpoint, create_endpoint_module
 
 __all__ = [
     "alibaba",
     "google",
+    "openai",
     "BaseModelEndpoint",
     "create_endpoint_module",
 ]
