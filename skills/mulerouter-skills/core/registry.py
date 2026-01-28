@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Any, Optional
 
 
 class OutputType(Enum):
@@ -40,8 +40,8 @@ class ModelParameter:
     type: str
     description: str
     required: bool = False
-    default: str | None = None
-    enum: list[str] | None = None
+    default: Any = None
+    enum: list[Any] | None = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary representation."""

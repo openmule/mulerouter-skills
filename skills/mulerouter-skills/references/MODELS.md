@@ -27,6 +27,7 @@ python scripts/list_models.py --json
 | Wan2.6 T2I | `models/alibaba/wan2.6-t2i/generation.py` | Flagship image generation |
 | Wan2.5 T2I Preview | `models/alibaba/wan2.5-t2i-preview/generation.py` | Preview model |
 | Nano Banana Pro | `models/google/nano-banana-pro/generation.py` | High-resolution images |
+| Midjourney Diffusion | `models/midjourney/diffusion/generation.py` | Midjourney image generation |
 
 ### Text-to-Video (T2V)
 
@@ -35,6 +36,8 @@ python scripts/list_models.py --json
 | Wan2.6 T2V | `models/alibaba/wan2.6-t2v/generation.py` | Flagship video generation |
 | Wan2.5 T2V Preview | `models/alibaba/wan2.5-t2v-preview/generation.py` | Preview model |
 | Wan2.2 T2V Plus | `models/alibaba/wan2.2-t2v-plus/generation.py` | Previous generation |
+| Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 video generation (mulerun only) |
+| Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 video generation (mulerun only) |
 
 ### Image-to-Video (I2V)
 
@@ -44,6 +47,9 @@ python scripts/list_models.py --json
 | Wan2.5 I2V Preview | `models/alibaba/wan2.5-i2v-preview/generation.py` | Preview model |
 | Wan2.2 I2V Plus | `models/alibaba/wan2.2-i2v-plus/generation.py` | High quality |
 | Wan2.2 I2V Flash | `models/alibaba/wan2.2-i2v-flash/generation.py` | 50% faster |
+| Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 with image input (mulerun only) |
+| Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 with image input (mulerun only) |
+| Midjourney Video | `models/midjourney/video/generation.py` | Image-to-video (prompt must include image URL) |
 
 ### Image-to-Image (I2I)
 

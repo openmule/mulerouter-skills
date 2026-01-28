@@ -1,6 +1,6 @@
-"""Google models.
+"""OpenAI models.
 
-This package imports all Google model endpoints to register them with the global registry.
+This package imports all OpenAI model endpoints to register them with the global registry.
 """
 
 import contextlib
@@ -12,11 +12,7 @@ _package_dir = Path(__file__).parent
 
 # List of model files to import
 _model_files = [
-    "nano-banana-pro/generation.py",
-    "nano-banana-pro/edit.py",
-    "nano-banana/generation.py",
-    "nano-banana/edit.py",
-    "veo3/generation.py",
+    "sora2/generation.py",
 ]
 
 
@@ -29,7 +25,7 @@ def _import_model_file(model_file: str) -> None:
 
     module_name = model_file.replace("/", "_").replace("-", "_").replace(".", "_")
     spec = importlib.util.spec_from_file_location(
-        f"models.google.{module_name}",
+        f"models.openai.{module_name}",
         file_path,
     )
     if spec and spec.loader:

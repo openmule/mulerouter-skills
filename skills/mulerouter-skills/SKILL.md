@@ -1,6 +1,6 @@
 ---
 name: mulerouter
-description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6 or Nano Banana.
+description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney.
 compatibility: Requires Python 3.10+, uv (or pip), and network access to api.mulerouter.ai or api.mulerun.com
 ---
 
@@ -25,7 +25,7 @@ ls -la .env 2>/dev/null || echo "No .env file found"
 
 ### Step 2: Configure if needed
 
-**Option A: Environment variables**
+**Option A: Environment variables (to override defaults)**
 ```bash
 export MULEROUTER_SITE="mulerun"    # or "mulerouter"
 export MULEROUTER_API_KEY="your-api-key"
@@ -76,8 +76,24 @@ uv run python models/alibaba/wan2.6-t2i/generation.py --prompt "A serene mountai
 
 **Image-to-Video:**
 ```bash
-uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --images '["https://example.com/photo.jpg"]'
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image "https://example.com/photo.jpg" #remote image url
 ```
+```bash
+uv run python models/alibaba/wan2.6-i2v/generation.py --prompt "Gentle zoom in" --image "/path/to/local/image.png" #local image path
+```
+
+## Image Input
+
+For image parameters (`--image`, `--images`, etc.), **prefer local file paths** over base64.
+
+```bash
+# Preferred: local file path (auto-converted to base64)
+--image /tmp/photo.png
+
+--images ["/tmp/photo.png"]
+```
+
+The skill automatically converts local file paths to base64 before sending to the API. This avoids command-line length limits that occur with raw base64 strings.
 
 ## Workflow
 

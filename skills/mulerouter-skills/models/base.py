@@ -19,7 +19,9 @@ from core import (
     ModelEndpoint,
     TaskResult,
     create_and_poll_task,
+    enhance_image_param_description,
     load_config,
+    process_image_params,
     register_endpoint,
 )
 
@@ -81,7 +83,7 @@ class BaseModelEndpoint(ABC):
         parser.add_argument(
             "--poll-interval",
             type=float,
-            default=5.0,
+            default=20.0,
             help="Polling interval in seconds (default: 5.0)",
         )
         parser.add_argument(
@@ -194,7 +196,9 @@ class BaseModelEndpoint(ABC):
             default = f" [default: {p.default}]" if p.default is not None else ""
             lines.append(f"  --{p.name.replace('_', '-')} {req}{default}")
             lines.append(f"      Type: {p.type}")
-            lines.append(f"      {p.description}")
+            # Enhance image param descriptions with local file path hint
+            desc = enhance_image_param_description(p.name, p.description)
+            lines.append(f"      {desc}")
             if p.enum:
                 lines.append(f"      Choices: {', '.join(str(e) for e in p.enum)}")
             lines.append("")
@@ -300,6 +304,9 @@ class BaseModelEndpoint(ABC):
 
         # Build request body
         body = self.build_request_body(parsed)
+
+        # Convert local file paths to base64 for image parameters
+        body = process_image_params(body)
 
         # Validate required parameters
         info = self.endpoint_info

@@ -2,6 +2,7 @@
 
 from .client import APIClient, APIResponse
 from .config import Config, Site, get_config_help, get_site_from_env, load_config, load_env_file
+from .image import enhance_image_param_description, process_image_params
 from .registry import (
     InputType,
     ModelEndpoint,
@@ -48,4 +49,7 @@ __all__ = [
     "parse_task_response",
     "is_terminal_status",
     "is_success_status",
+    # Image
+    "process_image_params",
+    "enhance_image_param_description",
 ]
