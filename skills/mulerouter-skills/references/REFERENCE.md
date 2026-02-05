@@ -6,14 +6,22 @@
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `MULEROUTER_SITE` | Yes | API site: `mulerouter` or `mulerun` |
 | `MULEROUTER_API_KEY` | Yes | API key for authentication |
+| `MULEROUTER_BASE_URL` | No* | Custom API base URL (takes priority over SITE) |
+| `MULEROUTER_SITE` | No* | API site: `mulerouter` or `mulerun` |
+
+*Either `MULEROUTER_BASE_URL` or `MULEROUTER_SITE` must be set.
 
 ### .env File Example
 
 ```env
-MULEROUTER_SITE=mulerun
+# Option 1: Use custom base URL (takes priority)
+MULEROUTER_BASE_URL=https://api.mulerouter.ai
 MULEROUTER_API_KEY=your-api-key
+
+# Option 2: Use site (if BASE_URL not set)
+# MULEROUTER_SITE=mulerun
+# MULEROUTER_API_KEY=your-api-key
 ```
 
 ## CLI Options
@@ -28,6 +36,7 @@ All model scripts support these options:
 | `--poll-interval N` | Polling interval in seconds (default: 5) |
 | `--max-wait N` | Maximum wait time in seconds (default: 600) |
 | `--quiet` | Suppress progress output |
+| `--base-url URL` | Override API base URL (takes priority over --site) |
 | `--site SITE` | Override API site (mulerouter/mulerun) |
 | `--api-key KEY` | Override API key |
 

@@ -19,6 +19,11 @@ A Claude Code skill for generating images and videos using MuleRouter/MuleRun mu
 ## Setup
 
 ```bash
+# Option 1: Use custom base URL (takes priority)
+export MULEROUTER_BASE_URL="https://api.mulerouter.ai"
+export MULEROUTER_API_KEY="your-api-key"
+
+# Option 2: Use site (if BASE_URL not set)
 export MULEROUTER_SITE="mulerun"  # or "mulerouter"
 export MULEROUTER_API_KEY="your-api-key"
 ```

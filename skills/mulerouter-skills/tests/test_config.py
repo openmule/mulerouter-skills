@@ -24,12 +24,27 @@ class TestConfig:
         assert config.base_url == "https://api.mulerun.com"
         assert config.site == Site.MULERUN
 
+    def test_config_explicit_base_url(self) -> None:
+        """Test Config with explicit base_url (takes priority over site)."""
+        config = Config(api_key="test-key", base_url="https://custom.api.com")
+        assert config.base_url == "https://custom.api.com"
+        assert config.site is None
+
+    def test_config_base_url_overrides_site(self) -> None:
+        """Test that explicit base_url overrides site."""
+        config = Config(api_key="test-key", site=Site.MULEROUTER, base_url="https://custom.api.com")
+        assert config.base_url == "https://custom.api.com"
+
     def test_config_defaults(self) -> None:
         """Test Config default values."""
-        config = Config(api_key="test-key")
+        config = Config(api_key="test-key", site=Site.MULEROUTER)
         assert config.timeout == 120.0
         assert config.max_retries == 3
-        assert config.site == Site.MULEROUTER
+
+    def test_config_missing_both_site_and_base_url(self) -> None:
+        """Test Config raises error when both site and base_url are missing."""
+        with pytest.raises(ValueError, match="Either base_url or site must be provided"):
+            Config(api_key="test-key")
 
 
 class TestLoadConfig:
@@ -66,6 +81,39 @@ class TestLoadConfig:
             config = load_config()
             assert config.site == Site.MULERUN
 
+    def test_load_config_explicit_base_url(self) -> None:
+        """Test loading config with explicit base_url."""
+        config = load_config(api_key="key", base_url="https://custom.api.com")
+        assert config.base_url == "https://custom.api.com"
+        assert config.site is None
+
+    def test_load_config_env_base_url(self) -> None:
+        """Test loading config from MULEROUTER_BASE_URL env var."""
+        with patch.dict(
+            os.environ,
+            {"MULEROUTER_API_KEY": "key", "MULEROUTER_BASE_URL": "https://custom.api.com"},
+            clear=True,
+        ):
+            config = load_config()
+            assert config.base_url == "https://custom.api.com"
+            assert config.site is None
+
+    def test_load_config_base_url_priority_over_site(self) -> None:
+        """Test that MULEROUTER_BASE_URL takes priority over MULEROUTER_SITE."""
+        with patch.dict(
+            os.environ,
+            {
+                "MULEROUTER_API_KEY": "key",
+                "MULEROUTER_BASE_URL": "https://custom.api.com",
+                "MULEROUTER_SITE": "mulerun",
+            },
+            clear=True,
+        ):
+            config = load_config()
+            assert config.base_url == "https://custom.api.com"
+            # site should be None because base_url takes priority
+            assert config.site is None
+
     def test_load_config_missing_api_key(self) -> None:
         """Test that missing API key raises ValueError."""
         with (
@@ -74,11 +122,11 @@ class TestLoadConfig:
         ):
             load_config()
 
-    def test_load_config_missing_site(self) -> None:
-        """Test that missing site raises ValueError."""
+    def test_load_config_missing_both_site_and_base_url(self) -> None:
+        """Test that missing both site and base_url raises ValueError."""
         with (
             patch.dict(os.environ, {"MULEROUTER_API_KEY": "key"}, clear=True),
-            pytest.raises(ValueError, match="Site not specified"),
+            pytest.raises(ValueError, match="Configuration not specified"),
         ):
             load_config()
 
@@ -96,4 +144,5 @@ class TestGetConfigHelp:
         help_text = get_config_help()
         assert "MULEROUTER_API_KEY" in help_text
         assert "MULEROUTER_SITE" in help_text
+        assert "MULEROUTER_BASE_URL" in help_text
         assert ".env" in help_text
