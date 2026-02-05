@@ -16,6 +16,7 @@ Before running any commands, verify the environment is configured:
 
 ```bash
 # Check environment variables
+echo "MULEROUTER_BASE_URL: $MULEROUTER_BASE_URL"
 echo "MULEROUTER_SITE: $MULEROUTER_SITE"
 echo "MULEROUTER_API_KEY: ${MULEROUTER_API_KEY:+[SET]}"
 
@@ -25,20 +26,33 @@ ls -la .env 2>/dev/null || echo "No .env file found"
 
 ### Step 2: Configure if needed
 
-**Option A: Environment variables (to override defaults)**
+**Option A: Environment variables with custom base URL (highest priority)**
+```bash
+export MULEROUTER_BASE_URL="https://api.mulerouter.ai"  # or your custom API endpoint
+export MULEROUTER_API_KEY="your-api-key"
+```
+
+**Option B: Environment variables with site (used if base URL not set)**
 ```bash
 export MULEROUTER_SITE="mulerun"    # or "mulerouter"
 export MULEROUTER_API_KEY="your-api-key"
 ```
 
-**Option B: Create .env file**
+**Option C: Create .env file**
 
 Create `.env` in the current working directory:
 
 ```env
-MULEROUTER_SITE=mulerun
+# Option 1: Use custom base URL (takes priority over SITE)
+MULEROUTER_BASE_URL=https://api.mulerouter.ai
 MULEROUTER_API_KEY=your-api-key
+
+# Option 2: Use site (if BASE_URL not set)
+# MULEROUTER_SITE=mulerun
+# MULEROUTER_API_KEY=your-api-key
 ```
+
+**Note:** `MULEROUTER_BASE_URL` takes priority over `MULEROUTER_SITE`. If both are set, `MULEROUTER_BASE_URL` is used.
 
 **Note:** The tool only reads `.env` from the current directory. Run scripts from the skill root (`skills/mulerouter-skills/`).
 
@@ -97,7 +111,7 @@ The skill automatically converts local file paths to base64 before sending to th
 
 ## Workflow
 
-1. Check configuration: verify `MULEROUTER_SITE` and `MULEROUTER_API_KEY` are set
+1. Check configuration: verify `MULEROUTER_BASE_URL` or `MULEROUTER_SITE`, and `MULEROUTER_API_KEY` are set
 2. Install dependencies: run `uv sync`
 3. Run `uv run python scripts/list_models.py` to discover available models
 4. Run `uv run python models/<path>/<action>.py --list-params` to see parameters

@@ -38,25 +38,45 @@ After installation, **RESTART Claude Code** to load the new skill.
 
 | Variable | Description |
 |----------|-------------|
-| `MULEROUTER_SITE` | API site: `mulerouter` or `mulerun` |
 | `MULEROUTER_API_KEY` | API key for authentication |
+
+### API Endpoint Configuration (one required)
+
+| Variable | Description | Priority |
+|----------|-------------|----------|
+| `MULEROUTER_BASE_URL` | Custom API base URL (e.g., `https://api.mulerouter.ai`) | Higher |
+| `MULEROUTER_SITE` | API site: `mulerouter` or `mulerun` | Lower |
+
+**Note:** `MULEROUTER_BASE_URL` takes priority over `MULEROUTER_SITE`. If both are set, `MULEROUTER_BASE_URL` is used.
 
 Get your API key on the [MuleRouter website](https://www.mulerouter.ai/app/api-keys?utm_source=github_claude_plugin)
 
-### Option 1: Environment Variables
+### Option 1: Environment Variables (with custom base URL)
+
+```bash
+export MULEROUTER_BASE_URL="https://api.mulerouter.ai"
+export MULEROUTER_API_KEY="your-api-key"
+```
+
+### Option 2: Environment Variables (with site)
 
 ```bash
 export MULEROUTER_SITE="mulerouter"      # or "mulerun"
 export MULEROUTER_API_KEY="your-api-key"
 ```
 
-### Option 2: .env File
+### Option 3: .env File
 
 Create a `.env` file in your skill directory:
 
 ```env
-MULEROUTER_SITE=mulerun
+# Option 1: Use custom base URL (takes priority)
+MULEROUTER_BASE_URL=https://api.mulerouter.ai
 MULEROUTER_API_KEY=your-api-key-here
+
+# Option 2: Use site (if BASE_URL not set)
+# MULEROUTER_SITE=mulerun
+# MULEROUTER_API_KEY=your-api-key-here
 ```
 
 **Note:** The tool only reads `.env` from the current working directory. Always run scripts from the skill root.
@@ -65,6 +85,7 @@ MULEROUTER_API_KEY=your-api-key-here
 
 ```bash
 # Check environment variables
+echo "MULEROUTER_BASE_URL: $MULEROUTER_BASE_URL"
 echo "MULEROUTER_SITE: $MULEROUTER_SITE"
 echo "MULEROUTER_API_KEY: ${MULEROUTER_API_KEY:+[SET]}"
 
@@ -104,6 +125,7 @@ All model scripts support:
 | Option | Description |
 |--------|-------------|
 | `--api-key KEY` | Override API key |
+| `--base-url URL` | Override base URL (takes priority over --site) |
 | `--site SITE` | Override site (mulerouter/mulerun) |
 | `--json` | Output as JSON |
 | `--list-params` | Show parameters and exit |

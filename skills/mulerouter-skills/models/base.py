@@ -69,9 +69,13 @@ class BaseModelEndpoint(ABC):
         # Config options
         parser.add_argument("--api-key", help="API key (overrides environment)")
         parser.add_argument(
+            "--base-url",
+            help="API base URL (overrides environment and site)",
+        )
+        parser.add_argument(
             "--site",
             choices=["mulerouter", "mulerun"],
-            help="API site (overrides environment)",
+            help="API site (overrides environment, ignored if --base-url is set)",
         )
 
         # Task options
@@ -297,6 +301,7 @@ class BaseModelEndpoint(ABC):
             config = load_config(
                 api_key=parsed.api_key,
                 site=parsed.site,
+                base_url=getattr(parsed, "base_url", None),
             )
         except ValueError as e:
             print(f"Configuration error: {e}", file=sys.stderr)
