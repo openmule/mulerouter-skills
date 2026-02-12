@@ -26,6 +26,7 @@ ENDPOINT = ModelEndpoint(
     api_path="/vendors/google/v1/veo/generation",
     result_key="videos",
     available_on=["mulerun"],
+    tags=["SOTA"],
     parameters=[
         ModelParameter(
             name="prompt",

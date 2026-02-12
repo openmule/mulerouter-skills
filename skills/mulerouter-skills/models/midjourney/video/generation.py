@@ -26,6 +26,7 @@ ENDPOINT = ModelEndpoint(
     api_path="/vendors/midjourney/v1/tob/video-diffusion",
     result_key="videos",
     available_on=["mulerouter", "mulerun"],
+    tags=["SOTA"],
     parameters=[
         ModelParameter(
             name="prompt",

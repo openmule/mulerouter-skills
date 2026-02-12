@@ -26,6 +26,7 @@ ENDPOINT = ModelEndpoint(
     api_path="/vendors/openai/v1/sora/generation",
     result_key="videos",
     available_on=["mulerun"],
+    tags=["SOTA"],
     parameters=[
         ModelParameter(
             name="prompt",

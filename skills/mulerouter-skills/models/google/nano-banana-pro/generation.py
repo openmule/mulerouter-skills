@@ -26,6 +26,7 @@ ENDPOINT = ModelEndpoint(
     api_path="/vendors/google/v1/nano-banana-pro/generation",
     result_key="images",
     available_on=["mulerouter", "mulerun"],
+    tags=["SOTA"],
     parameters=[
         ModelParameter(
             name="prompt",

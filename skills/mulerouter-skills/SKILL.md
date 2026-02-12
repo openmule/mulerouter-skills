@@ -118,6 +118,17 @@ The skill automatically converts local file paths to base64 before sending to th
 5. Execute with appropriate parameters
 6. Parse output URLs from results
 
+## Model Selection
+
+When listing models, each model's **tags** (e.g., `[SOTA]`) are displayed by default next to its name. Tags help identify model characteristics at a glance — for example, `SOTA` indicates a state-of-the-art model.
+
+You can also filter models by tag using `--tag`:
+```bash
+uv run python scripts/list_models.py --tag SOTA
+```
+
+**If you are unsure which model to use**, present the available options to the user and let them choose. Use the `AskUserQuestion` tool (or equivalent interactive prompt) to ask the user which model they prefer. For example, if the user asks to "generate an image" without specifying a model, list the relevant image generation models with their tags and descriptions, and ask the user to pick one.
+
 ## Tips
 1. For an image generation model, a suggested timeout is 5 minutes.
 2. For a video generation model, a suggested timeout is 15 minutes.

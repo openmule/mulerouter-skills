@@ -87,10 +87,11 @@ class ModelEndpoint:
     parameters: list[ModelParameter] = field(default_factory=list)
     available_on: list[str] = field(default_factory=lambda: ["mulerouter", "mulerun"])
     result_key: str = "images"
+    tags: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         """Convert to dictionary representation."""
-        return {
+        result = {
             "model_id": self.model_id,
             "action": self.action,
             "provider": self.provider,
@@ -102,6 +103,9 @@ class ModelEndpoint:
             "available_on": self.available_on,
             "result_key": self.result_key,
         }
+        if self.tags:
+            result["tags"] = self.tags
+        return result
 
 
 class ModelRegistry:
@@ -182,6 +186,18 @@ class ModelRegistry:
             List of ModelEndpoints producing that output type
         """
         return [e for e in self._endpoints.values() if e.output_type == output_type]
+
+    def list_by_tag(self, tag: str) -> list[ModelEndpoint]:
+        """List endpoints that have a specific tag.
+
+        Args:
+            tag: Tag to filter by (case-insensitive)
+
+        Returns:
+            List of ModelEndpoints with that tag
+        """
+        tag_lower = tag.lower()
+        return [e for e in self._endpoints.values() if tag_lower in [t.lower() for t in e.tags]]
 
     def get_providers(self) -> list[str]:
         """Get list of unique providers.

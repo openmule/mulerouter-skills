@@ -49,6 +49,7 @@ def list_models(
     site: str | None = None,
     provider: str | None = None,
     output_type: str | None = None,
+    tag: str | None = None,
 ) -> list[dict]:
     """List available models with optional filtering.
 
@@ -56,6 +57,7 @@ def list_models(
         site: Filter by API site (mulerouter/mulerun)
         provider: Filter by provider (alibaba/google)
         output_type: Filter by output type (image/video/text)
+        tag: Filter by tag (e.g., SOTA)
 
     Returns:
         List of model endpoint dictionaries
@@ -75,6 +77,10 @@ def list_models(
             endpoints = [e for e in endpoints if e.output_type == ot]
         except ValueError:
             pass
+
+    if tag:
+        tag_lower = tag.lower()
+        endpoints = [e for e in endpoints if tag_lower in [t.lower() for t in e.tags]]
 
     return [e.to_dict() for e in endpoints]
 
@@ -114,7 +120,10 @@ def format_models_text(models: list[dict], site: str | None = None) -> str:
         lines.append("-" * 40)
 
         for m in sorted(provider_models, key=lambda x: (x["model_id"], x["action"])):
-            lines.append(f"\n  {m['model_id']}/{m['action']}")
+            tags_str = ""
+            if m.get("tags"):
+                tags_str = " [" + ", ".join(m["tags"]) + "]"
+            lines.append(f"\n  {m['model_id']}/{m['action']}{tags_str}")
             lines.append(f"    Description: {m['description']}")
             lines.append(f"    Output: {m['output_type']}")
 
@@ -146,6 +155,10 @@ def main() -> int:
         "--json",
         action="store_true",
         help="Output as JSON",
+    )
+    parser.add_argument(
+        "--tag",
+        help="Filter by tag (e.g., SOTA)",
     )
     parser.add_argument(
         "--providers",
@@ -182,6 +195,7 @@ def main() -> int:
         site=site,
         provider=args.provider,
         output_type=args.output_type,
+        tag=args.tag,
     )
 
     if args.json:
