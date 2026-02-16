@@ -5,13 +5,13 @@
       "email": "support@mulerouter.ai"
     },
     "metadata": {
-      "description": "MuleRouter / MuleRun multimodal API skills for AI-powered image and video generation",
+      "description": "MuleRouter / MuleRun multimodal API skills for AI-powered image and video generation. Requires MULEROUTER_API_KEY and either MULEROUTER_BASE_URL or MULEROUTER_SITE environment variables.",
       "version": "1.0.0"
     },
     "plugins": [
       {
         "name": "mulerouter-skills",
-        "description": "Generates images and videos using MuleRouter / MuleRun multimodal APIs.",
+        "description": "Generates images and videos using MuleRouter / MuleRun multimodal APIs. Requires MULEROUTER_API_KEY env var (sent as Bearer token) and either MULEROUTER_BASE_URL or MULEROUTER_SITE env var.",
         "source": "./",
         "version": "1.0.0",
         "author": {

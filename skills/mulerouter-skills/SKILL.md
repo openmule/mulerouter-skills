@@ -16,8 +16,10 @@ This skill requires the following environment variables to be set before use:
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `MULEROUTER_API_KEY` | **Yes** | API key for authentication ([get one here](https://www.mulerouter.ai/app/api-keys?utm_source=github_claude_plugin)) |
-| `MULEROUTER_BASE_URL` | One of these | Custom API base URL (e.g., `https://api.mulerouter.ai`). Takes priority over SITE. |
-| `MULEROUTER_SITE` | is required | API site: `mulerouter` or `mulerun`. Used if BASE_URL is not set. |
+| `MULEROUTER_BASE_URL` | **Yes*** | Custom API base URL (e.g., `https://api.mulerouter.ai`). Takes priority over SITE. |
+| `MULEROUTER_SITE` | **Yes*** | API site: `mulerouter` or `mulerun`. Used if BASE_URL is not set. |
+
+*At least one of `MULEROUTER_BASE_URL` or `MULEROUTER_SITE` must be set.
 
 The API key is included in `Authorization: Bearer` headers when making network calls to the configured API endpoint.
 
@@ -71,7 +73,7 @@ MULEROUTER_API_KEY=your-api-key
 
 **Note:** `MULEROUTER_BASE_URL` takes priority over `MULEROUTER_SITE`. If both are set, `MULEROUTER_BASE_URL` is used.
 
-**Note:** The tool only reads `.env` from the current directory. Run scripts from the skill root (`skills/mulerouter-skills/`).
+**Note:** The skill loads `.env` from the current working directory at startup. Only store MuleRouter-related variables in this file. Avoid placing unrelated secrets in `.env` files in directories where this skill runs.
 
 ### Step 3: Using `uv` to run scripts
 
