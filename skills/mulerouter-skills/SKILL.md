@@ -1,12 +1,27 @@
 ---
 name: mulerouter
 description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney.
-compatibility: Requires Python 3.10+, uv (or pip), and network access to api.mulerouter.ai or api.mulerun.com
+compatibility: Requires Python 3.10+, uv, MULEROUTER_API_KEY env var, and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env var. Needs network access to api.mulerouter.ai or api.mulerun.com. The API key is sent in Authorization headers to the configured endpoint.
+allowed-tools: Bash Read
 ---
 
 # MuleRouter API
 
 Generate images and videos using MuleRouter or MuleRun multimodal APIs.
+
+## Required Environment Variables
+
+This skill requires the following environment variables to be set before use:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `MULEROUTER_API_KEY` | **Yes** | API key for authentication ([get one here](https://www.mulerouter.ai/app/api-keys?utm_source=github_claude_plugin)) |
+| `MULEROUTER_BASE_URL` | One of these | Custom API base URL (e.g., `https://api.mulerouter.ai`). Takes priority over SITE. |
+| `MULEROUTER_SITE` | is required | API site: `mulerouter` or `mulerun`. Used if BASE_URL is not set. |
+
+The API key is included in `Authorization: Bearer` headers when making network calls to the configured API endpoint.
+
+**If any of these variables are missing, the scripts will fail with a configuration error.** Check the Configuration section below to set them up.
 
 ## Configuration Check
 
@@ -25,6 +40,8 @@ ls -la .env 2>/dev/null || echo "No .env file found"
 ```
 
 ### Step 2: Configure if needed
+
+**If the variables above are not set**, ask the user to provide their API key and preferred endpoint, then configure using one of these options:
 
 **Option A: Environment variables with custom base URL (highest priority)**
 ```bash
@@ -107,11 +124,11 @@ For image parameters (`--image`, `--images`, etc.), **prefer local file paths** 
 --images ["/tmp/photo.png"]
 ```
 
-The skill automatically converts local file paths to base64 before sending to the API. This avoids command-line length limits that occur with raw base64 strings.
+The skill automatically reads local file paths, converts them to base64, and sends the encoded data to the API. This avoids command-line length limits that occur with raw base64 strings.
 
 ## Workflow
 
-1. Check configuration: verify `MULEROUTER_BASE_URL` or `MULEROUTER_SITE`, and `MULEROUTER_API_KEY` are set
+1. Check configuration: verify `MULEROUTER_API_KEY` and either `MULEROUTER_BASE_URL` or `MULEROUTER_SITE` are set
 2. Install dependencies: run `uv sync`
 3. Run `uv run python scripts/list_models.py` to discover available models
 4. Run `uv run python models/<path>/<action>.py --list-params` to see parameters
