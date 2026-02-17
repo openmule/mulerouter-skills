@@ -126,7 +126,7 @@ For image parameters (`--image`, `--images`, etc.), **prefer local file paths** 
 --images ["/tmp/photo.png"]
 ```
 
-The skill automatically reads local file paths, converts them to base64, and sends the encoded data to the API. This avoids command-line length limits that occur with raw base64 strings.
+Local file paths are validated before reading: only files with recognized image extensions (`.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp`, `.webp`, `.tiff`, `.tif`, `.svg`, `.ico`, `.heic`, `.heif`, `.avif`) are accepted. Paths pointing to sensitive system directories or non-image files are rejected. Valid image files are converted to base64 and sent to the API, avoiding command-line length limits that occur with raw base64 strings.
 
 ## Workflow
 
