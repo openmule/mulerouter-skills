@@ -3,7 +3,7 @@ name: mulerouter
 description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney.
 compatibility: Requires Python 3.10+, uv, MULEROUTER_API_KEY env var, and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env var. Needs network access to api.mulerouter.ai or api.mulerun.com. The API key is sent in Authorization headers to the configured endpoint.
 homepage: https://github.com/mulerouter/mulerouter-skills
-allowed-tools: Bash Read
+allowed-tools: Bash(uv run *) Bash(uv sync *) Read
 metadata:
   clawdbot:
     requires:
@@ -39,35 +39,19 @@ Before running any commands, verify the environment is configured:
 
 ### Step 1: Check for existing configuration
 
-```bash
-# Check environment variables
-echo "MULEROUTER_BASE_URL: $MULEROUTER_BASE_URL"
-echo "MULEROUTER_SITE: $MULEROUTER_SITE"
-echo "MULEROUTER_API_KEY: ${MULEROUTER_API_KEY:+[SET]}"
+Run the built-in config check script:
 
-# Check for .env file
-ls -la .env 2>/dev/null || echo "No .env file found"
+```bash
+uv run python -c "from core.config import load_config; load_config(); print('Configuration OK')"
 ```
+
+If this prints "Configuration OK", skip to **Step 3**. If it raises a `ValueError`, proceed to Step 2.
 
 ### Step 2: Configure if needed
 
-**If the variables above are not set**, ask the user to provide their API key and preferred endpoint, then configure using one of these options:
+**If the variables above are not set**, ask the user to provide their API key and preferred endpoint.
 
-**Option A: Environment variables with custom base URL (highest priority)**
-```bash
-export MULEROUTER_BASE_URL="https://api.mulerouter.ai"  # or your custom API endpoint
-export MULEROUTER_API_KEY="your-api-key"
-```
-
-**Option B: Environment variables with site (used if base URL not set)**
-```bash
-export MULEROUTER_SITE="mulerun"    # or "mulerouter"
-export MULEROUTER_API_KEY="your-api-key"
-```
-
-**Option C: Create .env file**
-
-Create `.env` in the current working directory:
+**Create a `.env` file** in the skill's working directory:
 
 ```env
 # Option 1: Use custom base URL (takes priority over SITE)
@@ -82,6 +66,8 @@ MULEROUTER_API_KEY=your-api-key
 **Note:** `MULEROUTER_BASE_URL` takes priority over `MULEROUTER_SITE`. If both are set, `MULEROUTER_BASE_URL` is used.
 
 **Note:** The skill only loads variables prefixed with `MULEROUTER_` from the `.env` file. Other variables in the file are ignored.
+
+**Important:** Do NOT use `export` shell commands to set credentials. Use a `.env` file or ensure the variables are already present in your shell environment before invoking the skill.
 
 ### Step 3: Using `uv` to run scripts
 
