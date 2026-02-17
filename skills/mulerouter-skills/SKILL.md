@@ -7,10 +7,12 @@ allowed-tools: Bash(uv run *) Bash(uv sync *) Read
 metadata:
   clawdbot:
     requires:
-      env: ["MULEROUTER_API_KEY", "MULEROUTER_BASE_URL", "MULEROUTER_SITE"]
+      env: ["MULEROUTER_API_KEY"]
+      env_one_of: ["MULEROUTER_BASE_URL", "MULEROUTER_SITE"]
       bins: ["uv", "python3"]
     primaryEnv: "MULEROUTER_API_KEY"
-    files: ["scripts/*", "models/*", "core/*"]
+    install: "uv sync"
+    files: ["scripts/*", "models/*", "core/*", "pyproject.toml"]
 ---
 
 # MuleRouter API
