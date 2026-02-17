@@ -1,11 +1,14 @@
 ---
 name: mulerouter
-description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney. Requires MULEROUTER_API_KEY credential and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env vars.
-compatibility: Requires Python 3.10+, uv, MULEROUTER_API_KEY env var (primary credential, sent as Bearer token in Authorization headers), and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env var. Needs network access to api.mulerouter.ai or api.mulerun.com.
-metadata:
-  primary_credential: MULEROUTER_API_KEY
-  required_env: MULEROUTER_API_KEY, MULEROUTER_BASE_URL|MULEROUTER_SITE
+description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney.
+compatibility: Requires Python 3.10+, uv, MULEROUTER_API_KEY env var, and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env var. Needs network access to api.mulerouter.ai or api.mulerun.com. The API key is sent in Authorization headers to the configured endpoint.
 allowed-tools: Bash Read
+requires:
+  env:
+    - MULEROUTER_API_KEY
+    - MULEROUTER_BASE_URL
+    - MULEROUTER_SITE
+primaryEnv: MULEROUTER_API_KEY
 ---
 
 # MuleRouter API
