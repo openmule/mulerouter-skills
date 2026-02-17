@@ -79,7 +79,7 @@ MULEROUTER_API_KEY=your-api-key-here
 # MULEROUTER_API_KEY=your-api-key-here
 ```
 
-**Note:** The tool only reads `.env` from the current working directory. Always run scripts from the skill root.
+**Note:** The tool only reads `MULEROUTER_*` variables from `.env`. Other variables in the file are ignored.
 
 ### Verify Configuration
 

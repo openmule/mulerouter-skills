@@ -73,7 +73,7 @@ MULEROUTER_API_KEY=your-api-key
 
 **Note:** `MULEROUTER_BASE_URL` takes priority over `MULEROUTER_SITE`. If both are set, `MULEROUTER_BASE_URL` is used.
 
-**Note:** The skill loads `.env` from the current working directory at startup. Only store MuleRouter-related variables in this file. Avoid placing unrelated secrets in `.env` files in directories where this skill runs.
+**Note:** The skill only loads variables prefixed with `MULEROUTER_` from the `.env` file. Other variables in the file are ignored.
 
 ### Step 3: Using `uv` to run scripts
 

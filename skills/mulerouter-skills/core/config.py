@@ -5,7 +5,10 @@ from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 
-from dotenv import load_dotenv
+from dotenv import dotenv_values
+
+# Only load environment variables with this prefix from .env files
+_ENV_PREFIX = "MULEROUTER_"
 
 
 class Site(Enum):
@@ -47,17 +50,22 @@ class Config:
 
 
 def load_env_file(env_file: Path | None = None) -> None:
-    """Load .env file if it exists.
+    """Load MULEROUTER_* variables from .env file if it exists.
+
+    Only variables prefixed with MULEROUTER_ are loaded into the environment.
+    Other variables in the .env file are ignored to avoid exposing unrelated secrets.
 
     Args:
         env_file: Path to .env file (defaults to current directory)
     """
-    if env_file:
-        load_dotenv(env_file)
-    else:
-        env_path = Path(".env")
-        if env_path.exists():
-            load_dotenv(env_path)
+    path = env_file or Path(".env")
+    if not path.exists():
+        return
+
+    values = dotenv_values(path)
+    for key, value in values.items():
+        if key.startswith(_ENV_PREFIX) and value is not None:
+            os.environ.setdefault(key, value)
 
 
 def get_site_from_env() -> Site | None:
