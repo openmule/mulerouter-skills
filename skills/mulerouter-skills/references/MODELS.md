@@ -26,6 +26,7 @@ python scripts/list_models.py --json
 |-------|------|-------------|
 | Wan2.6 T2I | `models/alibaba/wan2.6-t2i/generation.py` | Flagship image generation |
 | Wan2.5 T2I Preview | `models/alibaba/wan2.5-t2i-preview/generation.py` | Preview model |
+| Nano Banana 2 | `models/google/nano-banana-2/generation.py` | 4K images, 14 aspect ratios, web search grounding |
 | Nano Banana Pro | `models/google/nano-banana-pro/generation.py` | High-resolution images |
 | Midjourney Diffusion | `models/midjourney/diffusion/generation.py` | Midjourney image generation |
 
@@ -56,6 +57,7 @@ python scripts/list_models.py --json
 | Model | Path | Description |
 |-------|------|-------------|
 | Wan2.5 I2I Preview | `models/alibaba/wan2.5-i2i-preview/generation.py` | Image editing |
+| Nano Banana 2 Edit | `models/google/nano-banana-2/edit.py` | Image editing, up to 14 reference images |
 | Nano Banana Pro Edit | `models/google/nano-banana-pro/edit.py` | Image editing |
 
 ### Advanced Video Editing

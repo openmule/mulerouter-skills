@@ -12,6 +12,8 @@ _package_dir = Path(__file__).parent
 
 # List of model files to import
 _model_files = [
+    "nano-banana-2/generation.py",
+    "nano-banana-2/edit.py",
     "nano-banana-pro/generation.py",
     "nano-banana-pro/edit.py",
     "nano-banana/generation.py",
