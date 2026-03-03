@@ -39,6 +39,7 @@ python scripts/list_models.py --json
 | Wan2.2 T2V Plus | `models/alibaba/wan2.2-t2v-plus/generation.py` | Previous generation |
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 video generation (mulerun only) |
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 video generation (mulerun only) |
+| Kling V3 T2V | `models/klingai/kling-v3-t2v/generation.py` | Kling V3 text-to-video, 3-15s, sound & multi-shot |
 
 ### Image-to-Video (I2V)
 
@@ -51,6 +52,7 @@ python scripts/list_models.py --json
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 with image input (mulerun only) |
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 with image input (mulerun only) |
 | Midjourney Video | `models/midjourney/video/generation.py` | Image-to-video (prompt must include image URL) |
+| Kling V3 I2V | `models/klingai/kling-v3-i2v/generation.py` | Kling V3 image-to-video, 3-15s, sound & multi-shot |
 
 ### Image-to-Image (I2I)
 
