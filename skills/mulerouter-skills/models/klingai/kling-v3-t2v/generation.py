@@ -20,7 +20,7 @@ ENDPOINT = ModelEndpoint(
     action="generation",
     provider="klingai",
     model_name="kling-v3-t2v",
-    description="Generate videos from text prompts using Kling V3 model. Supports 3-15s duration, sound generation, and multi-shot mode",
+    description="Generate videos from text prompts using Kling V3 model. Supports 3-15s duration, sound generation, multi-shot mode.",
     input_types=[InputType.TEXT],
     output_type=OutputType.VIDEO,
     api_path="/vendors/klingai/v1/kling-v3/text-to-video/generation",
@@ -31,7 +31,7 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="prompt",
             type="string",
-            description="Text description for video content (max 2500 characters). Used for single-shot mode. Either prompt or multi-shot must be used",
+            description="Text description for video content (max 2500 characters). Used for single-shot mode. Mutually exclusive with multi_prompt.",
             required=False,
         ),
         ModelParameter(
@@ -39,14 +39,6 @@ ENDPOINT = ModelEndpoint(
             type="string",
             description="Negative prompt describing unwanted content (max 2500 characters)",
             required=False,
-        ),
-        ModelParameter(
-            name="model_name",
-            type="string",
-            description="Model version identifier",
-            required=False,
-            default="kling-v3",
-            enum=["kling-v3"],
         ),
         ModelParameter(
             name="mode",
@@ -73,6 +65,12 @@ ENDPOINT = ModelEndpoint(
             enum=["customize", "intelligence"],
         ),
         ModelParameter(
+            name="multi_prompt",
+            type="array",
+            description='Multi-shot prompt list (JSON array). Required when multi_shot=true and shot_type=customize. Each item has "prompt" (string) and "duration" (string, seconds). Total duration must equal the duration parameter. Example: \'[{"prompt":"scene 1","duration":"5"},{"prompt":"scene 2","duration":"5"}]\'',
+            required=False,
+        ),
+        ModelParameter(
             name="aspect_ratio",
             type="string",
             description="Video aspect ratio",
@@ -81,18 +79,11 @@ ENDPOINT = ModelEndpoint(
             enum=["16:9", "9:16", "1:1"],
         ),
         ModelParameter(
-            name="duration_int",
+            name="duration",
             type="integer",
             description="Video duration in seconds (3-15)",
             required=False,
             default=5,
-        ),
-        ModelParameter(
-            name="cfg_scale",
-            type="number",
-            description="CFG scale for generation guidance (0.0-1.0)",
-            required=False,
-            default=0.5,
         ),
         ModelParameter(
             name="sound",
@@ -101,7 +92,7 @@ ENDPOINT = ModelEndpoint(
             required=False,
             default="off",
             enum=["off", "on"],
-        ),
+        )
     ],
 )
 

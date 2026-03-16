@@ -20,7 +20,7 @@ ENDPOINT = ModelEndpoint(
     action="generation",
     provider="klingai",
     model_name="kling-v3-i2v",
-    description="Generate videos from images using Kling V3 model. Supports 3-15s duration, sound generation, and multi-shot mode",
+    description="Generate videos from images using Kling V3 model. Supports 3-15s duration, sound generation, multi-shot mode, and element references",
     input_types=[InputType.IMAGE, InputType.TEXT],
     output_type=OutputType.VIDEO,
     api_path="/vendors/klingai/v1/kling-v3/image-to-video/generation",
@@ -29,21 +29,33 @@ ENDPOINT = ModelEndpoint(
     tags=["SOTA"],
     parameters=[
         ModelParameter(
-            name="image",
+            name="first_frame",
             type="string",
-            description="First-frame image (URL, Base64, or local path). Must be <10MB, at least 300x300px",
+            description="First-frame reference image (URL, Base64, or local path). Must be <10MB, at least 300x300px, aspect ratio 1:2.5~2.5:1",
             required=True,
         ),
         ModelParameter(
             name="last_frame",
             type="string",
-            description="End frame image (URL, Base64, or local path) for keyframe interpolation (optional)",
+            description="End frame reference image (URL, Base64, or local path). Optional",
+            required=False,
+        ),
+        ModelParameter(
+            name="elements",
+            type="array",
+            description='Element list (JSON array) for subject/character references, max 3 elements. '
+            "Use <<<element_1>>>, <<<element_2>>>, etc. in prompt to reference them by index order. "
+            "Each item requires: "
+            '"type" ("image" or "video"); '
+            'For image type: "frontal_image" (required, exactly 1, URL or Base64, jpg/png <=10MB >=300px) and "reference_images" (required, array of 1-3 URLs or Base64); '
+            'For video type: "reference_videos" (list of video URLs). '
+            "Example: '[{\"type\":\"image\",\"frontal_image\":\"https://example.com/face.jpg\",\"reference_images\":[\"https://example.com/side.jpg\"]}]'",
             required=False,
         ),
         ModelParameter(
             name="prompt",
             type="string",
-            description="Motion/story description for the video (max 2500 characters). Used for single-shot mode. Either prompt or multi-shot must be used",
+            description="Motion/story description for the video (max 2500 characters). Use <<<element_1>>>, <<<element_2>>> etc. to reference elements by their index in elements. Used for single-shot mode. Either prompt or multi-shot must be used",
             required=False,
         ),
         ModelParameter(
@@ -51,14 +63,6 @@ ENDPOINT = ModelEndpoint(
             type="string",
             description="Negative prompt describing unwanted content (max 2500 characters)",
             required=False,
-        ),
-        ModelParameter(
-            name="model_name",
-            type="string",
-            description="Model version identifier",
-            required=False,
-            default="kling-v3",
-            enum=["kling-v3"],
         ),
         ModelParameter(
             name="mode",
@@ -85,18 +89,17 @@ ENDPOINT = ModelEndpoint(
             enum=["customize", "intelligence"],
         ),
         ModelParameter(
-            name="duration_int",
+            name="multi_prompt",
+            type="array",
+            description='Multi-shot prompt list (JSON array). Required when multi_shot=true and shot_type=customize. Each item has "prompt" (string) and "duration" (string, seconds). Total duration must equal the duration parameter. Example: \'[{"prompt":"scene 1","duration":"5"},{"prompt":"scene 2","duration":"5"}]\'',
+            required=False,
+        ),
+        ModelParameter(
+            name="duration",
             type="integer",
             description="Video duration in seconds (3-15)",
             required=False,
             default=5,
-        ),
-        ModelParameter(
-            name="cfg_scale",
-            type="number",
-            description="CFG scale for generation guidance (0.0-1.0)",
-            required=False,
-            default=0.5,
         ),
         ModelParameter(
             name="sound",

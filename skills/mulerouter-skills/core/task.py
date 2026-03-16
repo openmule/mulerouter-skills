@@ -109,7 +109,7 @@ def poll_task(
     task_id: str,
     result_key: str = "images",
     interval: float = 20.0,
-    max_wait: float = 600.0,
+    max_wait: float = 900.0,
     verbose: bool = True,
 ) -> TaskResult:
     """Poll a task until completion.
@@ -166,7 +166,7 @@ def create_and_poll_task(
     request_body: dict,
     result_key: str = "images",
     interval: float = 20.0,
-    max_wait: float = 600.0,
+    max_wait: float = 900.0,
     verbose: bool = True,
 ) -> TaskResult:
     """Create a task and poll until completion.

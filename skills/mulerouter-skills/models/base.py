@@ -93,8 +93,8 @@ class BaseModelEndpoint(ABC):
         parser.add_argument(
             "--max-wait",
             type=float,
-            default=600.0,
-            help="Maximum wait time in seconds (default: 600.0)",
+            default=900.0,
+            help="Maximum wait time in seconds (default: 900.0)",
         )
         parser.add_argument(
             "--quiet",
