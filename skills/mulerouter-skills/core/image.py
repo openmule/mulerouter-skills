@@ -15,6 +15,7 @@ IMAGE_PARAM_NAMES = {
     "last_frame_url",
     "ref_images_url",
     "reference_images",
+    "mask_image_url",
 }
 
 # Hint to add to image parameter descriptions
@@ -183,8 +184,39 @@ def convert_image_value(value: Any) -> Any:
     return value
 
 
+# Image field names inside element objects that accept local file paths
+_ELEMENT_IMAGE_FIELDS = {"frontal_image", "reference_images"}
+
+
+def _process_elements(elements: list[Any]) -> list[Any]:
+    """Process elements list, converting local image paths to base64.
+
+    Handles frontal_image (string) and reference_images (list of strings)
+    inside each element dict.
+
+    Args:
+        elements: List of element dicts
+
+    Returns:
+        Processed elements with image fields converted
+    """
+    result = []
+    for element in elements:
+        if isinstance(element, dict):
+            elem = element.copy()
+            for field in _ELEMENT_IMAGE_FIELDS:
+                if field in elem:
+                    elem[field] = convert_image_value(elem[field])
+            result.append(elem)
+        else:
+            result.append(element)
+    return result
+
+
 def process_image_params(body: dict[str, Any]) -> dict[str, Any]:
     """Process request body, converting local file paths to base64.
+
+    Handles top-level image params and image fields nested inside elements.
 
     Args:
         body: Request body dictionary
@@ -196,4 +228,6 @@ def process_image_params(body: dict[str, Any]) -> dict[str, Any]:
     for key in IMAGE_PARAM_NAMES:
         if key in result:
             result[key] = convert_image_value(result[key])
+    if "elements" in result and isinstance(result["elements"], list):
+        result["elements"] = _process_elements(result["elements"])
     return result

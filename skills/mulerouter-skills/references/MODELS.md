@@ -40,6 +40,7 @@ python scripts/list_models.py --json
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 video generation (mulerun only) |
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 video generation (mulerun only) |
 | Kling V3 T2V | `models/klingai/kling-v3-t2v/generation.py` | Kling V3 text-to-video, 3-15s, sound & multi-shot |
+| Kling V3 Omni T2V | `models/klingai/kling-v3-omni-t2v/generation.py` | Kling V3 Omni text-to-video, multi-shot, sound, element refs |
 
 ### Image-to-Video (I2V)
 
@@ -53,6 +54,20 @@ python scripts/list_models.py --json
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 with image input (mulerun only) |
 | Midjourney Video | `models/midjourney/video/generation.py` | Image-to-video (prompt must include image URL) |
 | Kling V3 I2V | `models/klingai/kling-v3-i2v/generation.py` | Kling V3 image-to-video, 3-15s, sound & multi-shot |
+| Kling V3 Omni I2V | `models/klingai/kling-v3-omni-i2v/generation.py` | Kling V3 Omni image-to-video, multi-shot, sound |
+
+### Reference-to-Video (Ref2V)
+
+| Model | Path | Description |
+|-------|------|-------------|
+| Kling V3 Omni Ref2V | `models/klingai/kling-v3-omni-ref2v/generation.py` | Kling V3 Omni reference-to-video, style/character guidance |
+
+### Video-to-Video (V2V)
+
+| Model | Path | Description |
+|-------|------|-------------|
+| Kling V3 Omni V2V | `models/klingai/kling-v3-omni-v2v/generation.py` | Kling V3 Omni video-to-video, feature-guided generation |
+| Kling V3 Omni V2V Edit | `models/klingai/kling-v3-omni-v2v-edit/generation.py` | Kling V3 Omni video editing, modify existing videos |
 
 ### Image-to-Image (I2I)
 

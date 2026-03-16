@@ -14,6 +14,11 @@ _package_dir = Path(__file__).parent
 _model_files = [
     "kling-v3-t2v/generation.py",
     "kling-v3-i2v/generation.py",
+    "kling-v3-omni-t2v/generation.py",
+    "kling-v3-omni-i2v/generation.py",
+    "kling-v3-omni-ref2v/generation.py",
+    "kling-v3-omni-v2v/generation.py",
+    "kling-v3-omni-v2v-edit/generation.py",
 ]
 
 

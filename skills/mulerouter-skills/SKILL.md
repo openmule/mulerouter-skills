@@ -1,8 +1,8 @@
 ---
 name: mulerouter
-description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney, Kling V3.
+description: Generates images and videos using MuleRouter or MuleRun multimodal APIs. Text-to-Image, Image-to-Image, Text-to-Video, Image-to-Video, Reference-to-Video, Video-to-Video, video editing (VACE, keyframe interpolation). Use when the user wants to generate, edit, or transform images and videos using AI models like Wan2.6, Veo3, Nano Banana Pro, Sora2, Midjourney, Kling V3, Kling V3 Omni.
 compatibility: Requires Python 3.10+, uv, MULEROUTER_API_KEY env var, and one of MULEROUTER_BASE_URL or MULEROUTER_SITE env var. Needs network access to api.mulerouter.ai or api.mulerun.com. The API key is sent in Authorization headers to the configured endpoint.
-homepage: https://github.com/mulerouter/mulerouter-skills
+homepage: https://github.com/openmule/mulerouter-skills
 allowed-tools: Bash(uv run *) Bash(uv sync *) Read
 metadata:
   clawdbot:
