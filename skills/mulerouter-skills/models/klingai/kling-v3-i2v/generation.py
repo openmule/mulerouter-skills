@@ -91,7 +91,7 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="multi_prompt",
             type="array",
-            description='Multi-shot prompt list (JSON array). Required when multi_shot=true and shot_type=customize. Each item has "prompt" (string) and "duration" (string, seconds). Total duration must equal the duration parameter. Example: \'[{"prompt":"scene 1","duration":"5"},{"prompt":"scene 2","duration":"5"}]\'',
+            description='Multi-shot prompt list (JSON array). Required when multi_shot=true and shot_type=customize. Each item has "prompt" (string) and "duration" (integer, seconds). Total duration must equal the duration parameter. Example: \'[{"prompt":"scene 1","duration":5},{"prompt":"scene 2","duration":5}]\'',
             required=False,
         ),
         ModelParameter(
