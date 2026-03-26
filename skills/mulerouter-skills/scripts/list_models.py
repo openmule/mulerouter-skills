@@ -23,7 +23,7 @@ from core import OutputType, get_site_from_env, load_env_file, registry
 
 def _import_provider_models() -> None:
     """Import all provider model packages to register endpoints."""
-    providers = ["alibaba", "google", "midjourney", "openai"]
+    providers = ["alibaba", "google", "klingai", "midjourney", "minimax", "openai"]
 
     for provider in providers:
         provider_dir = _models_dir / provider
