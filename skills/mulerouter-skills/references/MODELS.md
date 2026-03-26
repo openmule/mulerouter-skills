@@ -85,6 +85,20 @@ python scripts/list_models.py --json
 | Wan2.1 VACE Plus | `models/alibaba/wan2.1-vace-plus/generation.py` | Video outpainting |
 | Wan2.1 KF2V Plus | `models/alibaba/wan2.1-kf2v-plus/generation.py` | Keyframe interpolation |
 
+### Text-to-Speech (TTS)
+
+| Model | Path | Description |
+|-------|------|-------------|
+| MiniMax Speech 2.8 HD | `models/minimax/speech-2.8-hd/generation.py` | High-definition TTS, 37+ languages, voice emotions, $100/M chars |
+| MiniMax Speech 2.8 Turbo | `models/minimax/speech-2.8-turbo/generation.py` | Fast affordable TTS, 37+ languages, voice emotions, $60/M chars |
+
+### Text-to-Music (TTM)
+
+| Model | Path | Description |
+|-------|------|-------------|
+| MiniMax Music 2.0 | `models/minimax/music-2.0/generation.py` | Music generation from lyrics and style, up to 5min, $0.03/song |
+| MiniMax Music 2.5 | `models/minimax/music-2.5/generation.py` | Latest music generation from lyrics and style, up to 5min, $0.15/song |
+
 ## Checking Parameters
 
 Before calling a model, use `--list-params`:
