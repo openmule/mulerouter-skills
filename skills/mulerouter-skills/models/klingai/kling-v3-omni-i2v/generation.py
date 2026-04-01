@@ -31,7 +31,7 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="first_frame",
             type="string",
-            description="First-frame reference image (URL or Base64)",
+            description="First-frame reference image (URL or Base64). When not provided, aspect_ratio is required",
             required=False,
         ),
         ModelParameter(
@@ -88,6 +88,13 @@ ENDPOINT = ModelEndpoint(
             description="Video duration in seconds (3-15)",
             required=False,
             default=5,
+        ),
+        ModelParameter(
+            name="aspect_ratio",
+            type="string",
+            description="Video aspect ratio. Required when first_frame is not provided; auto-inferred from first_frame if not specified",
+            required=False,
+            enum=["16:9", "9:16", "1:1"],
         ),
         ModelParameter(
             name="multi_shot",

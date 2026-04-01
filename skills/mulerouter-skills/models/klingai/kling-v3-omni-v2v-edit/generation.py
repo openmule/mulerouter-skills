@@ -31,7 +31,7 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="prompt",
             type="string",
-            description="Text description for video editing (max 2500 characters). Required. Use @Video1 to reference videos from video_list. Use <<<element_1>>>, <<<element_2>>> etc. to reference elements by their index in elements",
+            description="Text description for video editing (max 2500 characters). Required. Use @Video1 to reference videos from video. Use <<<element_1>>>, <<<element_2>>> etc. to reference elements by their index in elements",
             required=True,
         ),
         ModelParameter(
@@ -41,7 +41,7 @@ ENDPOINT = ModelEndpoint(
             required=False,
         ),
         ModelParameter(
-            name="video_list",
+            name="video",
             type="array",
             description='Video list to edit (JSON array, required). Only 1 video allowed, duration must be at least 3s. Each item has: '
             '"video_url" (string, required, must be a URL); '

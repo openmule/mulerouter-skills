@@ -31,13 +31,13 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="first_frame",
             type="string",
-            description="First-frame reference image (URL, Base64, or local path). Must be <10MB, at least 300x300px, aspect ratio 1:2.5~2.5:1",
-            required=True,
+            description="First-frame reference image (URL, Base64, or local path). Must be <10MB, at least 300x300px, aspect ratio 1:2.5~2.5:1. At least one of first_frame or last_frame is required",
+            required=False,
         ),
         ModelParameter(
             name="last_frame",
             type="string",
-            description="End frame reference image (URL, Base64, or local path). Optional",
+            description="End frame reference image (URL, Base64, or local path). At least one of first_frame or last_frame is required",
             required=False,
         ),
         ModelParameter(
