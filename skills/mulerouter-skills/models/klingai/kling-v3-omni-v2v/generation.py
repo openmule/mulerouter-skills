@@ -20,7 +20,7 @@ ENDPOINT = ModelEndpoint(
     action="generation",
     provider="klingai",
     model_name="kling-v3-omni-v2v",
-    description="Generate new videos from reference videos using Kling V3 Omni model. Uses reference videos as feature guidance, requires prompt and video_list. Use @Video1 in prompt to reference videos",
+    description="Generate new videos from reference videos using Kling V3 Omni model. Uses reference videos as feature guidance, requires prompt and video. Use @Video1 in prompt to reference videos",
     input_types=[InputType.VIDEO, InputType.TEXT],
     output_type=OutputType.VIDEO,
     api_path="/vendors/klingai/v1/kling-v3-omni/reference-video-to-video/generation",
@@ -31,7 +31,7 @@ ENDPOINT = ModelEndpoint(
         ModelParameter(
             name="prompt",
             type="string",
-            description="Text description for video content (max 2500 characters). Required. Use @Video1 to reference videos from video_list. Use <<<element_1>>>, <<<element_2>>> etc. to reference elements by their index in elements",
+            description="Text description for video content (max 2500 characters). Required. Use @Video1 to reference videos from video. Use <<<element_1>>>, <<<element_2>>> etc. to reference elements by their index in elements",
             required=True,
         ),
         ModelParameter(
@@ -41,7 +41,7 @@ ENDPOINT = ModelEndpoint(
             required=False,
         ),
         ModelParameter(
-            name="video_list",
+            name="video",
             type="array",
             description='Reference video list (JSON array, required). Only 1 video allowed, duration must be at least 3s. Each item has: '
             '"video_url" (string, required, must be a URL); '
