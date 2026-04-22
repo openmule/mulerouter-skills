@@ -29,6 +29,7 @@ python scripts/list_models.py --json
 | Nano Banana 2 | `models/google/nano-banana-2/generation.py` | 4K images, 14 aspect ratios, web search grounding |
 | Nano Banana Pro | `models/google/nano-banana-pro/generation.py` | High-resolution images |
 | Midjourney Diffusion | `models/midjourney/diffusion/generation.py` | Midjourney image generation |
+| GPT Image 2 | `models/openai/gpt-image-2/generation.py` | OpenAI GPT Image 2, up to 4K resolution, multiple quality levels, batch up to 4 images (mulerouter only) |
 
 ### Text-to-Video (T2V)
 
@@ -76,6 +77,7 @@ python scripts/list_models.py --json
 | Wan2.5 I2I Preview | `models/alibaba/wan2.5-i2i-preview/generation.py` | Image editing |
 | Nano Banana 2 Edit | `models/google/nano-banana-2/edit.py` | Image editing, up to 14 reference images |
 | Nano Banana Pro Edit | `models/google/nano-banana-pro/edit.py` | Image editing |
+| GPT Image 2 Edit | `models/openai/gpt-image-2/edit.py` | Edit images with text prompts, multiple input images, optional mask for targeted edits, up to 4K (mulerouter only) |
 
 ### Advanced Video Editing
 
