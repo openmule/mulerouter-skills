@@ -13,6 +13,8 @@ _package_dir = Path(__file__).parent
 # List of model files to import
 _model_files = [
     "sora2/generation.py",
+    "gpt-image-2/generation.py",
+    "gpt-image-2/edit.py",
 ]
 
 
