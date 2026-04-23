@@ -13,6 +13,9 @@ _package_dir = Path(__file__).parent
 
 # List of model directories and their scripts to import
 _model_files = [
+    # Happy Horse 1.0 series
+    "happy-horse-1-0-t2v/generation.py",
+    "happy-horse-1-0-i2v/generation.py",
     # Wan 2.6 series
     "wan2.6-t2v/generation.py",
     "wan2.6-i2v/generation.py",
