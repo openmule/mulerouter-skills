@@ -38,6 +38,7 @@ python scripts/list_models.py --json
 | Wan2.6 T2V | `models/alibaba/wan2.6-t2v/generation.py` | Flagship video generation |
 | Wan2.5 T2V Preview | `models/alibaba/wan2.5-t2v-preview/generation.py` | Preview model |
 | Wan2.2 T2V Plus | `models/alibaba/wan2.2-t2v-plus/generation.py` | Previous generation |
+| Happy Horse 1.0 T2V | `models/alibaba/happy-horse-1-0-t2v/generation.py` | Happy Horse 1.0 text-to-video, 720P/1080P, 3-15s |
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 video generation (mulerun only) |
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 video generation (mulerun only) |
 | Kling V3 T2V | `models/klingai/kling-v3-t2v/generation.py` | Kling V3 text-to-video, 3-15s, sound & multi-shot |
@@ -51,6 +52,7 @@ python scripts/list_models.py --json
 | Wan2.5 I2V Preview | `models/alibaba/wan2.5-i2v-preview/generation.py` | Preview model |
 | Wan2.2 I2V Plus | `models/alibaba/wan2.2-i2v-plus/generation.py` | High quality |
 | Wan2.2 I2V Flash | `models/alibaba/wan2.2-i2v-flash/generation.py` | 50% faster |
+| Happy Horse 1.0 I2V | `models/alibaba/happy-horse-1-0-i2v/generation.py` | Happy Horse 1.0 image-to-video, 720P/1080P, 3-15s, optional text guidance |
 | Veo 3 | `models/google/veo3/generation.py` | Google Veo 3 with image input (mulerun only) |
 | Sora 2 | `models/openai/sora2/generation.py` | OpenAI Sora 2 with image input (mulerun only) |
 | Midjourney Video | `models/midjourney/video/generation.py` | Image-to-video (prompt must include image URL) |
